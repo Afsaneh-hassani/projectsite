@@ -79,6 +79,16 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+.orange-box {
+  background-color: orange; /* رنگ نارنجی */
+  color: black; /* رنگ متن سفید برای خوانایی */
+  padding: 10px 15px; /* فاصله داخلی */
+  display: inline-block; /* کادر فقط دور متن باشه */
+  border-radius: 5px; /* گوشه‌های گرد (اختیاری) */
+}
+
+
+
 *,
 *::before,
 *::after {
@@ -601,6 +611,26 @@ progress {
   max-width: 100%;
   height: auto;
 }
+
+
+.large-image-container {
+  max-width: 500px; /* حداکثر عرض برای عکس بزرگ */
+}
+
+.small-image-container {
+  max-width: 200px; /* حداکثر عرض برای عکس کوچک */
+}
+
+/* یا مستقیماً روی خود عکس */
+.large-image {
+  max-width: 500px;
+}
+
+.small-image {
+  max-width: 200px;
+}
+
+
 
 .img-thumbnail {
   padding: 0.25rem;
@@ -5908,6 +5938,12 @@ textarea.form-control-lg {
   background-position: 50%;
   background-size: 100% 100%;
 }
+
+
+
+
+
+
 
 /* rtl:options: {
   "autoRename": true,
