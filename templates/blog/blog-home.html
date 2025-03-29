@@ -177,12 +177,22 @@
                                     {% include "blog/blog-writer.html" %}
                                 </div>
                             </div>
+
+                            <!-- Author Widget -->
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body">
+                                    {% include 'blog/blog-tags.html'%}
+                                </div>
+                            </div>
                             
                             <!-- Categories Widget -->
                             <div class="card border-0 shadow-sm">
                                 <div class="card-body">
                                     {% postcategories %}
                                 </div>
+
+                            
+                                
                             </div>
                         </div>
                     </div>

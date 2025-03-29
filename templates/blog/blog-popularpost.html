@@ -1,6 +1,7 @@
 
 
 {% load static %}
+{% load humanize%}
 
 <div class="col-xl-8">
     <h2 class="fw-bolder fs-5 mb-4 orange-box">Poplular Posts</h2>
@@ -11,7 +12,7 @@
        
             
           
-        <div class="small text-muted">{{post.published_date|date:'d M Y'}}</div>
+        <div class="small text-muted">{{post.published_date|naturalday}}</div>
         <a class="link-dark" href="{% url 'blog:single' pid=post.id %}"><h3>{{post.title}}</h3></a>
 
 

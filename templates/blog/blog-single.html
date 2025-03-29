@@ -131,6 +131,10 @@
                                 <h5 class="mb-0">{{post.author.get_full_name}}</h5>
                                 <span class="text-muted small">Author</span>
                             </div>
+
+                           
+
+
                         </div>
                         <p class="small text-muted mb-2">Published on {{post.published_date|date:"F j, Y"}}</p>
                         <div class="d-flex flex-wrap gap-1">
@@ -140,8 +144,16 @@
                             </a>
                             {% endfor %}
                         </div>
+
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-body">
+                                {% include 'blog/blog-tags.html'%}
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                
                 
                 <!-- Main Content Column -->
                 <div class="col-lg-9">
