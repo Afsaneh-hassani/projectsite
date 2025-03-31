@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+     'multi_captcha_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,18 +42,29 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     "debug_toolbar",
+    'django_summernote',
     'taggit',
     'robots',
     'website',
     'blog',
-    
+    'captcha',
 ]
 
 SITE_ID=2
 
+# summernote config
+SUMMERNOTE_THEME = 'bs4'
+
 #robots
 ROBOTS_USE_HOST=True
 ROBOTS_USE_SITEMAP=True
+
+
+
+#captcha admin setting
+MULTI_CAPTCHA_ADMIN = {
+   'engine': 'simple-captcha',
+}
 
 
 MIDDLEWARE = [
@@ -150,3 +162,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+
+X_FRAME_OPTION = 'SAVEORGIN'
