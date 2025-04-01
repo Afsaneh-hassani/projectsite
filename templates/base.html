@@ -25,18 +25,31 @@
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="index.html">Start Bootstrap</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <a class="navbar-brand" href="{% url 'website:index' %}">Your Logo</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- آیتم‌های سمت چپ (Login/Signup) -->
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            {% if request.user.is_authenticated %}
+                                <li class="nav-item"><a class="nav-link" href="#">Logged in as {{ request.user.username }}</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a></li>
+                            {% else %}
+                                <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}">Sign up</a></li>
+                            {% endif %}
+                        </ul>
+                        
+                        <!-- آیتم‌های سمت راست (Home, About, ...) -->
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item"><a class="nav-link" href="{% url 'website:index' %}">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'website:about' %}">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'website:contact' %}">Contact</a></li>
-                            
                             <li class="nav-item"><a class="nav-link" href="{% url 'blog:index' %}">Blog</a></li>
-                            
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                                     <li><a class="dropdown-item" href="portfolio-overview.html">Portfolio Overview</a></li>
                                     <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
