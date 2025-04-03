@@ -162,8 +162,8 @@
                     <header class="mb-4">
                         <h1 class="fw-bolder mb-2">{{post.title}}</h1>
                         <div class="text-muted mb-3">
-                            <span class="me-3"><i class="bi bi-clock me-1"></i> {{post.read_time}} min read</span>
-                            <span><i class="bi bi-eye me-1"></i> {{post.counted_views}} views</span>
+                            
+                            <span><i class="bi bi-eye me-1"></i> <a href="#">{{post.counted_view}}</a> <span class="lnr lnr-eye"></span> views</span>
                         </div>
                     </header>
                     
@@ -208,89 +208,136 @@
                     </div>
                     
                     <!-- Comments Section -->
-                    <section class="comments-section">
+                    
+                    <section class="comment-area py-5">
                         <div class="card border-0 shadow-sm">
-                            <div class="card-body p-4">
-                                <h3 class="fw-bold mb-4">Comments (3)</h3>
-                                
-                                <!-- Comment Form -->
-
-                                <h4>{% comments_count post.id %} Comments</h4>
-                                {%for comment in comments%}
-                                <div class="comment-list">
-                                  <div class="single-comment justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                      <div class="thumb">
-                                        <img src="{% static 'img/blog/c1.jpg' %}" alt="" />
-                                      </div>
-                                      <div class="desc">
-                                        <h5><a href="#">{{comment.name}}</a></h5>
-                                        <p class="date">{{comment.created_date|naturalday}}</p>
-                                        <p class="comment">{{comment.message}}</p>
-                                      </div>
-                                    </div>
-                                    <div class="reply-btn">
-                                      <a href="" class="btn-reply text-uppercase">reply</a>
-                                    </div>
-                                  </div>
-                                </div>
-                                {%empty%}
-                                <p>no comments here, be the first on to say something</p>
-                                
-                              {% endfor %}
-                              <h4>Leave a Comment</h4>
-            
-         
-
-         
-
-          
-          
-                              
-                            </div>
-
-
-
-
-
-
-
-
-                                
-                                <div class="mb-5">
-                                    <h4 class="fw-bold mb-3">Leave a Comment</h4>
-                                    <form>
-                                        <div class="form-group mb-3">
-                                            <textarea class="form-control" rows="4" placeholder="Write your comment here..." required></textarea>
-                                        </div>
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" placeholder="Your Name" required>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="email" class="form-control" placeholder="Your Email" required>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary mt-3">Post Comment</button>
-                                    </form>
-                                </div>
-                                
-                                <!-- Comments List -->
-                                <div class="comment-list">
-                                    <form method="post" action="{% url 'blog:single' pid=post.id %}">
+                            <div class="card-body p-4 p-md-5">
+                                <!-- فرم کامنت با طراحی زیباتر -->
+                                <form method="post" action="{% url 'blog:single' pid=post.id %}" class="comment-form">
                                     {% csrf_token %}
-                                    <!-- Comment 1 -->
+                                    <input type="hidden" name="post" value="{{ post.id }}">
                                     
+                                    {% if request.user.is_authenticated %}
+                                        <input type="hidden" name="name" value="{{ request.user.first_name }}">
+                                        <input type="hidden" name="email" value="{{ request.user.email }}">
+                                    {% else %}
+                                        <div class="row g-3 mb-4">
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                                                    <label for="name">Your Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                                    <label for="email">Your Email</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
                                     
+                                    <div class="mb-4">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+                                            <label for="subject">Subject</label>
+                                        </div>
+                                    </div>
                                     
+                                    <div class="mb-4">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Leave a comment" id="message" name="message" style="height: 120px" required></textarea>
+                                            <label for="message">Your Message</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary btn-lg px-4 py-2">
+                                        <i class="bi bi-send me-2"></i> Post Comment
+                                    </button>
+                                </form>
+                    
+                                <!-- لیست کامنت‌ها با طراحی زیباتر -->
+                                <div class="comments-list mt-5">
+                                    <h4 class="mb-4 fw-bold border-bottom pb-3">
+                                        <i class="bi bi-chat-square-text me-2"></i>
+                                        {% comments_count post.id %} Comments
+                                    </h4>
+                                    
+                                    {% for comment in comments %}
+                                    <div class="single-comment mb-4 p-3 bg-light rounded-3">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 me-3">
+                                                <img src="{% static 'img/blog/c1.jpg' %}" class="rounded-circle" width="60" height="60" alt="{{ comment.name }}">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <h5 class="mb-0 fw-bold">
+                                                        <a href="#" class="text-decoration-none">{{ comment.name }}</a>
+                                                    </h5>
+                                                    <small class="text-muted">
+                                                        <i class="bi bi-clock"></i> {{ comment.created_date|naturalday }}
+                                                    </small>
+                                                </div>
+                                                <p class="comment-text mb-2">{{ comment.message }}</p>
+                                                <a href="#" class="btn btn-sm btn-outline-primary reply-btn">
+                                                    <i class="bi bi-reply"></i> Reply
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% empty %}
+                                    <div class="empty-comments text-center py-4 bg-light rounded-3">
+                                        <i class="bi bi-chat-square-text display-6 text-muted mb-3"></i>
+                                        <p class="text-muted mb-0">No comments yet. Be the first to comment!</p>
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
                     </section>
-                </div>
-            </div>
+                    
+                    <!-- استایل های سفارشی -->
+                    <style>
+                        .comment-area {
+                            background-color: #f8f9fa;
+                        }
+                        .comment-form {
+                            background: white;
+                            padding: 2rem;
+                            border-radius: 0.5rem;
+                        }
+                        .single-comment {
+                            transition: all 0.3s ease;
+                            border-left: 3px solid #0d6efd;
+                        }
+                        .single-comment:hover {
+                            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+                        }
+                        .comment-text {
+                            font-size: 0.95rem;
+                            line-height: 1.6;
+                        }
+                        .empty-comments {
+                            border: 2px dashed #dee2e6;
+                        }
+                        .btn-primary {
+                            background-color: #0d6efd;
+                            border-color: #0d6efd;
+                            transition: all 0.3s ease;
+                        }
+                        .btn-primary:hover {
+                            background-color: #0b5ed7;
+                            border-color: #0a58ca;
+                            transform: translateY(-2px);
+                        }
+                    </style>
+           
+
+
+
+          </div>
         </div>
-    </section>
+      
 
     <!-- Footer-->
     <footer class="bg-dark py-4 mt-auto">

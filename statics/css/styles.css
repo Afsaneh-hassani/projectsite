@@ -695,7 +695,12 @@ progress {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1320px;
   }
+
+
+
 }
+
+
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -10882,3 +10887,39 @@ html {
   background-repeat: no-repeat;
   min-height: 15rem;
 }
+
+
+
+
+.header-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* overlay برای خوانایی بهتر متن (اختیاری) */
+.header-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3); /* تاریک‌کننده تصویر */
+  z-index: 1;
+}
+
+.header-bg > .container {
+  position: relative;
+  z-index: 2; /* متن بالای overlay */
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* سایه متن */
+}
+
+.min-vh-100 {
+  min-height: 100vh; /* ارتفاع کامل صفحه */
+}
+

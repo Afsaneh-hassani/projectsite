@@ -1,5 +1,8 @@
 from django import template
 from blog.models import Post, Category, Comment
+from django.utils import timezone
+from django.core.paginator import Paginator
+
 
 register=template.Library()
 
@@ -31,3 +34,11 @@ def postcategories():
         cat_dict[name]=posts.filter(category=name).count()
         
     return {'categories':cat_dict}
+
+
+
+@register.inclusion_tag('website/latestposts.html')
+def latestpostshome(args=3):
+    posts=Post.objects.filter(published_date__lte=timezone.now(),status=1).order_by('-created_date')[:args]
+    
+    return {'posts':posts}
