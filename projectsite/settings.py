@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'website',
     'blog',
     'captcha',
+    'compressor',
 ]
 
 SITE_ID=2
@@ -134,7 +135,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'afsaneh.hs@gmail.com'
-EMAIL_HOST_PASSWORD = '2993791419'
+EMAIL_HOST_PASSWORD = 'extqfiynlrsggrex'
 
 
 AUTHENTICATION_BACKENDS = [
@@ -167,6 +168,18 @@ MEDIA_ROOT= BASE_DIR/'media'
 STATICFILES_DIRS = [
     BASE_DIR / "statics",
 ]
+
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',  
+)
+
+COMPRESS_ENABLED = True  
+  
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

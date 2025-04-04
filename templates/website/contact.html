@@ -24,10 +24,10 @@
 <form class="form-area contact-form text-right" method="post" novalidate>
     {% csrf_token %}
     
-    <!-- نمایش پیغام‌ها -->
     
     
-    <!-- فیلد نام -->
+    
+    
     <div class="form-floating mb-3">
         {{ form.name }}
         <label for="{{ form.name.id_for_label }}">FullName</label>
@@ -38,7 +38,7 @@
         {% endif %}
     </div>
 
-    <!-- فیلد ایمیل -->
+    
     <div class="form-floating mb-3">
         {{ form.email }}
         <label for="{{ form.email.id_for_label }}">Your Email</label>
@@ -49,7 +49,7 @@
         {% endif %}
     </div>
 
-    <!-- فیلد موضوع -->
+    
     <div class="form-floating mb-3">
         {{ form.subject }}
         <label for="{{ form.subject.id_for_label }}">Subject</label>
@@ -60,7 +60,7 @@
         {% endif %}
     </div>
 
-    <!-- فیلد پیام -->
+   
     <div class="form-floating mb-3">
         {{ form.message }}
         <label for="{{ form.message.id_for_label }}"> Your message</label>
@@ -77,7 +77,7 @@
     </div>
    
 
-    <!-- دکمه ارسال -->
+    
     <div class="d-grid">
         <button class="btn btn-primary btn-lg" type="submit"> Submitt</button>
     </div>
