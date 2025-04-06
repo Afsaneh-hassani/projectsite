@@ -1,0 +1,12 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<div class="single-sidebar-widget search-widget orange-box">
+  <form class="search-form" action="{% url 'blog:search' %}" method='get'>
+    <input placeholder="Search Posts" name="s" type="text" 
+           onfocus="this.placeholder = ''" 
+           onblur="this.placeholder = 'Search Posts'" />
+    <button type="submit" class="search-button">
+      <i class="fa fa-search"></i>
+    </button>
+  </form>
+</div>

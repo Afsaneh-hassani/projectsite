@@ -4,12 +4,12 @@ from projectsite.settings import *
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%#_g-stl0m3$_d-pallu00av7n*$7gjw2ybc%wj(l87sef^a+l'
+SECRET_KEY = 'django-insecure-f8&_$fi+$oudui)6k7t34bsjg7sa6om+@rb%zxu9f6!m6dd!99'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['afsanehnexus.ir','www.afsanehnexus.ir']
 
 #site frameworks
 SITE_ID=2
